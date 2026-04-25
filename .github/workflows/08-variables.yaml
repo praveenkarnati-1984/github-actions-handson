@@ -11,12 +11,13 @@ jobs:
         runs-on: ubuntu-latest
         env:
             JOB_VAR: "I am a job env var"
-            OVERWRITTEN: "I ahve been overwritten at job level"
+            OVERWRITTEN: "I have been overwritten at job level"
         steps:
             - name: Print env variables
               env:
                 STEP_VAR: 'I am a step env var'
                 step_var2: 'I am another step env var'
+                OVERWRITTEN: "I am overwritten at step1 level"
               run: |
                 echo "Step env var: ${{env.STEP_VAR}}"
                 echo "Step env var 2: $step_var2"
@@ -25,6 +26,6 @@ jobs:
                 echo "Overwritten: ${{env.OVERWRITTEN}}"
             - name: Overwrite Job variable
               env:
-                OVERWRITTEN: "I have been overwritten at step level"
+                OVERWRITTEN: "I have been overwritten at step2 level"
               run: |
                 echo "Step env var: ${{env.OVERWRITTEN}}"
